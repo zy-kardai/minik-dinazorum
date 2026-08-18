@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minik Dinazorumm ❤️</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        width: 100%;
+        min-height: 100vh;
+        overflow: hidden;
+        background: radial-gradient(circle at center, #2b0818 0%, #0d0508 55%, #020203 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+    }
+
+    .scene {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Arka Plan Glow Efekti */
+    .glow {
+        position: absolute;
+        width: 320px;
+        height: 320px;
+        background: radial-gradient(circle, rgba(255, 23, 68, 0.4) 0%, rgba(255, 105, 180, 0.1) 70%, transparent 100%);
+        filter: blur(60px);
+        border-radius: 50%;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* Başlık */
+    h1 {
+        font-family: 'Dancing Script', cursive;
+        font-size: 45px;
+        font-weight: 700;
+        text-shadow: 0 0 20px rgba(255, 23, 68, 0.7);
+        margin-bottom: 25px;
+        z-index: 5;
+    }
+
+    /* Modern & Estetik SVG Kalp */
+    .heart-wrapper {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        z-index: 5;
+        cursor: pointer;
+        animation: pulseHeart 1.6s infinite ease-in-out;
+        filter: drop-shadow(0 0 25px rgba(255, 23, 68, 0.8));
+    }
+
+    .heart-svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* İnteraktif Buton ve İkna Nedeni Kutusu */
+    .tiffany-container {
+        margin-top: 35px;
+        z-index: 5;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tiffany-btn {
+        background: linear-gradient(135deg, #00b2a9, #81d8d0); /* Tiffany Mavisi Gradyan */
+        color: #0d0508;
+        border: none;
+        padding: 14px 28px;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(129, 216, 208, 0.4);
+        transition: all 0.3s ease;
+        letter-spacing: 0.5px;
+    }
+
+    .tiffany-btn:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 8px 25px rgba(129, 216, 208, 0.6);
+        background: linear-gradient(135deg, #81d8d0, #00b2a9);
+    }
+
+    .reason-box {
+        margin-top: 20px;
+        padding: 15px 20px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(129, 216, 208, 0.2);
+        border-radius: 15px;
+        font-size: 15px;
+        color: #e0f7f6;
+        min-height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        width: 100%;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    /* Parçacıklar */
+    .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #ff5c7a;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #ff1744;
+        animation: float 6s linear infinite;
+        opacity: .6;
+        pointer-events: none;
+    }
+
+    .p1 { left: 10%; bottom: -10px; animation-delay: 0s; }
+    .p2 { left: 25%; bottom: -20px; animation-delay: 1.5s; }
+    .p3 { left: 50%; bottom: -15px; animation-delay: 3s; }
+    .p4 { left: 75%; bottom: -30px; animation-delay: 0.8s; }
+    .p5 { left: 90%; bottom: -10px; animation-delay: 2.2s; }
+
+    /* Pop-up Efektleri (Yüzük & Kalp) */
+    .pop-item {
+        position: fixed;
+        font-size: 24px;
+        pointer-events: none;
+        animation: popUp 1.2s forwards ease-out;
+        z-index: 100;
+    }
+
+    @keyframes pulseHeart {
+        0% { transform: scale(1); }
+        15% { transform: scale(1.1); }
+        30% { transform: scale(1); }
+        45% { transform: scale(1.15); }
+        60% { transform: scale(1); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0) scale(.5); opacity: 0; }
+        20% { opacity: 0.8; }
+        100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+    }
+
+    @keyframes popUp {
+        0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5) rotate(0deg); }
+        100% { opacity: 0; transform: translate(-50%, -140px) scale(1.5) rotate(20deg); }
+    }
+
+    @media (max-width: 500px) {
+        h1 { font-size: 36px; }
+        .heart-wrapper { width: 140px; height: 140px; }
+        .tiffany-btn { font-size: 13px; padding: 12px 20px; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+    <div class="glow"></div>
+
+    <!-- Parçacıklar -->
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+
+    <h1>Minik Dinazorumm 🦖❤️</h1>
+
+    <!-- Detaylı SVG Kalp -->
+    <div class="heart-wrapper" onclick="triggerBurst(event)">
+        <svg class="heart-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ff1744" />
+                    <stop offset="50%" stop-color="#ff5252" />
+                    <stop offset="100%" stop-color="#b2102f" />
+                </linearGradient>
+            </defs>
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#heartGrad)"/>
+            <!-- İç Işıltı Katmanı -->
+            <path d="M12 18.5l-1-0.9C6.2 13.5 3.5 11 3.5 8c0-2.1 1.6-3.7 3.7-3.7 1.4 0 2.8 0.7 3.5 1.8L12 7.8l1.3-1.7c0.7-1.1 2.1-1.8 3.5-1.8 2.1 0 3.7 1.6 3.7 3.7 0 3-2.7 5.5-7.5 9.6L12 18.5z" fill="white" opacity="0.15"/>
+        </svg>
+    </div>
+
+    <!-- Tiffany Yüzük Nedensellik Butonu -->
+    <div class="tiffany-container">
+        <button class="tiffany-btn" onclick="showNextReason(event)">
+            Bana Neden Tiffany Yüzük Almalısın? 💍✨
+        </button>
+        <div class="reason-box" id="reasonText">
+            Butona tıkla ve en ikna edici sebepleri gör! 🤫
+        </div>
+    </div>
+</div>
+
+<script>
+    // Neden-Sonuç Listesi
+    const reasons = [
+        "Neden: Dünyanın en tatlı minik dinazoruyum. 🦖\nSonuç: Parmağımda Tiffany yüzük ışıldamalı!",
+        "Neden: Seni her gün sabırla ve çok seviyorum. ❤️\nSonuç: Tiffany kutusu açmayı hak ediyorum!",
+        "Neden: Kahve içerken elimdeki o ışıltı fotoğraflarda harika duracak. ☕✨\nSonuç: Hemen sipariş verilse iyi olur!",
+        "Neden: İlişkimize resmi bir 'parıltı' güncellemesi gerekiyor. 💍\nSonuç: Rota: En yakın Tiffany & Co. mağazası!",
+        "Neden: Çünkü ben mutlu olursam dünya güzelleşir. 🌟\nSonuç: Tiffany yüzük = Ömür boyu mutluluk!"
+    ];
+
+    let lastIdx = -1;
+
+    function showNextReason(e) {
+        let randomIdx;
+        do {
+            randomIdx = Math.floor(Math.random() * reasons.length);
+        } while (randomIdx === lastIdx);
+        
+        lastIdx = randomIdx;
+        const box = document.getElementById('reasonText');
+        
+        box.style.opacity = '0';
+        box.style.transform = 'translateY(10px)';
+        
+        setTimeout(() => {
+            box.innerText = reasons[randomIdx];
+            box.style.opacity = '1';
+            box.style.transform = 'translateY(0)';
+        }, 200);
+
+        triggerBurst(e);
+    }
+
+    // Yüzük ve Kalp Saçılma Efekti
+    function triggerBurst(e) {
+        const items = ['💍', '❤️', '✨', '🩵'];
+        for (let i = 0; i < 7; i++) {
+            const pop = document.createElement('div');
+            pop.classList.add('pop-item');
+            pop.innerText = items[Math.floor(Math.random() * items.length)];
+            
+            const x = e.clientX || window.innerWidth / 2;
+            const y = e.clientY || window.innerHeight / 2;
+            
+            const randomX = (Math.random() - 0.5) * 100;
+            const randomY = (Math.random() - 0.5) * 100;
+
+            pop.style.left = `px`;
+            pop.style.top = `px`;
+            
+            document.body.appendChild(pop);
+
+            setTimeout(() => {
+                pop.remove();
+            }, 1200);
+        }
+    }
+</script>
+
+</body>
+</html>
